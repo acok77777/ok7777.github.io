@@ -14,6 +14,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Poor+Story&display=swap" rel="stylesheet">
 
 <style>
+/* 👉 기존 CSS 그대로 (변경 없음) */
 body{
   font-family:"맑은 고딕", sans-serif;
   text-align:center;
@@ -25,27 +26,17 @@ body{
     radial-gradient(circle at 30px 30px,#fff 2px,transparent 3px);
   background-size:40px 40px;
 }
-
-/* 제목 */
 .title-wrap{position:relative;display:inline-block;padding-top:22px;}
-.top-center{position:absolute;top:0;left:40px;font-family:'Poor Story';font-size:16px;font-weight:bold;}
-.main-title{font-family:'Poor Story';font-size:26px;font-weight:bold;margin-bottom:8px;}
-
-/* 기간 */
-.sub-title{font-family:'Poor Story';font-size:20px;font-weight:bold;}
+.top-center{position:absolute;top:0;left:40px;font-family:'Poor Story', cursive;font-size:16px;font-weight:bold;}
+.main-title{font-family:'Poor Story', cursive;font-size:26px;font-weight:bold;margin-bottom:8px;}
+.sub-title{font-family:'Poor Story', cursive;font-size:20px;font-weight:bold;}
 .period-title{color:#2e7d32;}
 .date-strong{color:#1976d2;font-weight:bold;text-decoration:underline;}
-
-/* 이름 */
 .name-box{margin:18px 0;display:flex;justify-content:center;}
 .name-wrap{display:flex;align-items:center;background:#fff;border:2px solid #ffd27d;border-radius:14px;padding:6px 12px;}
 .flower{font-size:18px;margin-right:6px;}
 .name-input{border:none;outline:none;font-size:15px;width:145px;text-align:center;}
-
-/* 안내 */
 .guide{font-size:13px;}
-
-/* 빙고판 */
 .grid{
   display:grid;
   grid-template-columns:repeat(4,1fr);
@@ -63,23 +54,24 @@ body{
   background:#f8bbd0;
   cursor:pointer;
   font-size:12px;
+  line-height:1.2;
   display:flex;
   align-items:center;
   justify-content:center;
 }
-.text-box{position:absolute;top:12%;width:90%;}
+.text-box{position:absolute;top:12%;width:90%;text-align:center;}
 .title{font-weight:800;margin-bottom:6px;}
-
+.subline,.third{margin:0;}
 .cell.open{
   color:transparent;
   background-image:url("flower2.jpg");
   background-size:400% 400%;
   background-repeat:no-repeat;
 }
-
-/* 꽃가루 */
 .petal{
-  position:absolute;width:8px;height:8px;
+  position:absolute;
+  width:8px;
+  height:8px;
   background:radial-gradient(circle,#ff5f8f,#ffc1d9);
   border-radius:50% 50% 50% 0;
   transform:rotate(45deg);
@@ -90,8 +82,6 @@ body{
   0%{transform:scale(0.4);opacity:1;}
   100%{transform:translate(var(--x),var(--y)) scale(1.2);opacity:0;}
 }
-
-/* 하단 */
 .notice{font-size:15px;margin-top:10px;}
 .notice-date{color:#1976d2;font-weight:bold;text-decoration:underline;}
 .notice-strong{font-weight:bold;}
@@ -113,11 +103,11 @@ body{
 <div class="name-box">
   <div class="name-wrap">
     <div class="flower">🌷</div>
-    <input class="name-input" id="username" placeholder="이름 입력">
+    <input class="name-input" id="nameInput" placeholder="이름 입력">
   </div>
 </div>
 
-<p class="guide">칸을 눌러 도전과제를 완료해 보세요 🌸</p>
+<p class="guide">칸을 눌러 도전과제를 완료해 보세요. 모두 열리면 꽃이 완성돼요 🌸</p>
 
 <div class="grid" id="grid"></div>
 
@@ -128,85 +118,89 @@ body{
 </div>
 
 <script>
-const missions = [
+const missions=[
  ["스마일 DAY","가족에게","3가지 칭찬하기"],
  ["창제 DAY","평소","창제시간에<br>+10분"],
- ["오.운.완.","오늘 운동 완료","(산책 OK)"],
- ["땡스 투 ♡","오늘 감사한 일","3가지"],
- ["SDG's DAY","일회용품","사용금지"],
- ["'나'를 위한 DAY","나 자신","칭찬"],
+ ["오.운.완.","오늘 운동 완료","(산책, 스트레칭<br>OK)"],
+ ["땡스 투 ♡","오늘 감사한 일","3가지 적어보기"],
+ ["SDG's DAY","오늘 일회용품","사용금지"],
+ ["'나'를 위한 DAY","나 자신","칭찬해주기"],
  ["우호 DAY","칸나활동","실천"],
- ["좌담회 DAY","가족과","좌담회"],
- ["우호 DAY","영무궁화","스피치"],
- ["승리 DAY","신.행.학","승리"],
- ["허그 DAY","가족","안아주기"],
- ["'나' DAY","인스턴트","안먹기"],
- ["도전 DAY","하기 싫은 일","도전"],
- ["해방 DAY","잔소리","금지"],
- ["영무궁화 DAY","선배와","활동"],
- ["사제 DAY","신인간혁명","읽기"]
+ ["좌담회 DAY","'나의청년' 및","가족과 함께<br>좌담회 참석"],
+ ["우호 DAY","영무궁화에게<br>스피치 전하기","(회원,회우)"],
+ ["승리 DAY","오늘 하루","신.행.학<br>승리하기"],
+ ["허그 DAY","사랑하는 가족","꼭~안아주기"],
+ ["'나'를 위한 DAY","오늘 인스턴트","음식 안먹기"],
+ ["도전 DAY","하기 싫은 일","즐겁게<br>도전해보기"],
+ ["해방 DAY","오늘 하루","잔소리 금지"],
+ ["영무궁화 DAY","선배와 함께","영무궁화<br>활동하기"],
+ ["사제 DAY","신인간혁명","2권 5페이지<br>읽기"]
 ];
 
-const grid = document.getElementById("grid");
-const saved = JSON.parse(localStorage.getItem("openCells") || "[]");
+const grid=document.getElementById("grid");
+const savedOpen = JSON.parse(localStorage.getItem("openCells") || "[]");
 
-missions.forEach((m,i)=>{
-  const cell=document.createElement("div");
-  cell.className="cell";
-  cell.innerHTML=`<div class="text-box">
-    <div class="title">${m[0]}</div>
-    <div>${m[1]}</div>
-    <div>${m[2]}</div>
-  </div>`;
+missions.forEach((arr,i)=>{
+ const cell=document.createElement("div");
+ cell.className="cell";
+ const box=document.createElement("div");
+ box.className="text-box";
+ box.innerHTML=`<div class="title">${arr[0]}</div>
+ <div class="subline">${arr[1]}</div>
+ <div class="third">${arr[2]}</div>`;
+ cell.appendChild(box);
 
-  const r=Math.floor(i/4), c=i%4;
+ const r=Math.floor(i/4), c=i%4;
 
-  if(saved.includes(i)){
-    cell.classList.add("open");
-    cell.style.backgroundPosition=`${c*33.33}% ${r*33.33}%`;
+ /* 🔹 저장된 상태 복원 */
+ if(savedOpen.includes(i)){
+   cell.classList.add("open");
+   cell.style.backgroundPosition=`${c*33.33}% ${r*33.33}%`;
+ }
+
+ cell.onclick=()=>{
+  cell.classList.toggle("open");
+
+  let now = JSON.parse(localStorage.getItem("openCells") || "[]");
+
+  if(cell.classList.contains("open")){
+   cell.style.backgroundPosition=`${c*33.33}% ${r*33.33}%`;
+   if(!now.includes(i)) now.push(i);
+   sparkle(cell);
+  }else{
+   now = now.filter(v=>v!==i);
   }
-
-  cell.onclick=()=>{
-    cell.classList.toggle("open");
-    let now = JSON.parse(localStorage.getItem("openCells")||"[]");
-
-    if(cell.classList.contains("open")){
-      cell.style.backgroundPosition=`${c*33.33}% ${r*33.33}%`;
-      now.push(i);
-      sparkle(cell);
-    }else{
-      now = now.filter(v=>v!==i);
-    }
-    localStorage.setItem("openCells", JSON.stringify(now));
-  };
-
-  grid.appendChild(cell);
+  localStorage.setItem("openCells", JSON.stringify(now));
+ };
+ grid.appendChild(cell);
 });
 
-/* 이름 저장 */
-const nameInput=document.getElementById("username");
-nameInput.value = localStorage.getItem("username") || "";
+/* 🔹 이름 저장/복원 */
+const nameInput = document.getElementById("nameInput");
+nameInput.value = localStorage.getItem("savedName") || "";
 nameInput.addEventListener("input",()=>{
-  localStorage.setItem("username", nameInput.value);
+  localStorage.setItem("savedName", nameInput.value);
 });
 
 function sparkle(cell){
-  for(let i=0;i<10;i++){
-    const p=document.createElement("div");
-    p.className="petal";
-    p.style.setProperty("--x",(Math.random()*80-40)+"px");
-    p.style.setProperty("--y",(Math.random()*80-40)+"px");
-    p.style.left="50%";
-    p.style.top="50%";
-    cell.appendChild(p);
-    setTimeout(()=>p.remove(),1000);
-  }
+ for(let i=0;i<12;i++){
+  const p=document.createElement("div");
+  p.className="petal";
+  p.style.setProperty("--x",(Math.random()*80-40)+"px");
+  p.style.setProperty("--y",(Math.random()*80-40)+"px");
+  p.style.left="50%";
+  p.style.top="50%";
+  cell.appendChild(p);
+  setTimeout(()=>p.remove(),1000);
+ }
 }
 </script>
 
 <script>
-if("serviceWorker" in navigator){
-  navigator.serviceWorker.register("/service-worker.js");
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("/service-worker.js");
+  });
 }
 </script>
 
