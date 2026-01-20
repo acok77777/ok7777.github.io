@@ -3,9 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title> 제물포권 영무궁화 챌린지</title>
+<title>제물포권 영무궁화 챌린지</title>
 
-<!-- PWA/홈화면 아이콘 -->
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icon-192.png" sizes="192x192">
 <link rel="icon" href="icon-512.png" sizes="512x512">
@@ -27,13 +26,12 @@ body{
   background-size:40px 40px;
 }
 
-/* 제목 영역 */
+/* 제목 */
 .title-wrap{
   position:relative;
   display:inline-block;
   padding-top:22px;
 }
-
 .top-center{
   position:absolute;
   top:0;
@@ -42,13 +40,10 @@ body{
   font-size:16px;
   font-weight:bold;
 }
-
-/* 제목 */
 .main-title{
   font-family:'Poor Story', cursive;
   font-size:26px;
   font-weight:bold;
-  color:#000;
   margin-bottom:8px;
 }
 
@@ -57,14 +52,8 @@ body{
   font-family:'Poor Story', cursive;
   font-size:20px;
   font-weight:bold;
-  margin-top:8px;
 }
-
-.period-title{
-  color:#2e7d32;
-  font-weight:bold;
-}
-
+.period-title{color:#2e7d32;}
 .date-strong{
   color:#1976d2;
   font-weight:bold;
@@ -77,7 +66,6 @@ body{
   display:flex;
   justify-content:center;
 }
-
 .name-wrap{
   display:flex;
   align-items:center;
@@ -86,22 +74,19 @@ body{
   border-radius:14px;
   padding:6px 12px;
 }
-
 .flower{font-size:18px;margin-right:6px;}
-
 .name-input{
   border:none;
   outline:none;
   font-size:15px;
   width:145px;
   text-align:center;
-  text-indent:-8px;
 }
 
 /* 안내 */
-.guide{font-size:13px;white-space:nowrap;}
+.guide{font-size:13px;}
 
-/* 퍼즐 */
+/* 빙고판 */
 .grid{
   display:grid;
   grid-template-columns:repeat(4,1fr);
@@ -114,27 +99,23 @@ body{
   border-radius:18px;
   overflow:hidden;
 }
-
 .cell{
   position:relative;
   background:#f8bbd0;
   cursor:pointer;
   font-size:12px;
-  line-height:1.15;
+  line-height:1.2;
   display:flex;
   align-items:center;
   justify-content:center;
 }
-
-/* 글씨 */
 .text-box{
   position:absolute;
   top:12%;
   width:90%;
   text-align:center;
 }
-
-.title{font-weight:800;margin-bottom:8px;}
+.title{font-weight:800;margin-bottom:6px;}
 .subline,.third{margin:0;}
 
 /* 열림 */
@@ -156,13 +137,9 @@ body{
   pointer-events:none;
   animation:float 1s ease-out forwards;
 }
-
 @keyframes float{
   0%{transform:scale(0.4);opacity:1;}
-  100%{
-    transform:translate(var(--x),var(--y)) scale(1.2);
-    opacity:0;
-  }
+  100%{transform:translate(var(--x),var(--y)) scale(1.2);opacity:0;}
 }
 
 /* 하단 */
@@ -195,9 +172,7 @@ body{
   </div>
 </div>
 
-<p class="guide">
-  칸을 눌러 도전과제를 완료해 보세요. 모두 열리면 꽃이 완성돼요 🌸
-</p>
+<p class="guide">칸을 눌러 도전과제를 완료해 보세요. 모두 열리면 꽃이 완성돼요 🌸</p>
 
 <div class="grid" id="grid"></div>
 
@@ -209,101 +184,60 @@ body{
 
 <script>
 const missions=[
-  ["스마일 DAY","가족에게","3가지 칭찬하기"],
-  ["창제 DAY","평소","창제시간에<br>+10분"],
-  ["오.운.완.","오늘 운동 완료","(산책, 스트레칭<br>OK)"],
-  ["땡스 투 ♡","오늘 감사한 일","3가지 적어보기"],
-  ["SDG's DAY","오늘 일회용품","사용금지"],
-  ["'나'를 위한 DAY","나 자신","칭찬해주기"],
-  ["우호 DAY","칸나활동","실천"],
-  ["좌담회 DAY","'나의청년' 및","가족과 함께<br>좌담회 참석"],
-  ["우호 DAY","영무궁화(회원 회우)선생님","스피치 전하기"],
-  ["승리 DAY","오늘 하루","신.행.학<br>승리하기"],
-  ["허그 DAY","사랑하는 가족","꼭~안아주기"],
-  ["'나'를 위한 DAY","오늘 인스턴트","음식 안먹기"],
-  ["도전 DAY","하기 싫은 일","즐겁게<br>도전해보기"],
-  ["해방 DAY","오늘 하루","잔소리 금지"],
-  ["영무궁화 DAY","선배와 함께","영무궁화<br>활동하기"],
-  ["사제 DAY","신인간혁명","2권 5페이지<br>읽기"]
+ ["스마일 DAY","가족에게","3가지 칭찬하기"],
+ ["창제 DAY","평소","창제시간에<br>+10분"],
+ ["오.운.완.","오늘 운동 완료","(산책, 스트레칭도<br>OK)"],
+ ["땡스 투 ♡","오늘 감사한 일","3가지 적어보기"],
+ ["SDG's DAY","오늘 일회용품","사용금지"],
+ ["'나'를 위한 DAY","나 자신","칭찬해주기"],
+ ["우호 DAY","칸나활동","실천"],
+ ["좌담회 DAY","'나의청년' 및","가족과 함께<br>좌담회 참석"],
+ ["우호 DAY","영무궁화께","선생님 스피치<br>전하기 (회원·회우 OK)"],
+ ["승리 DAY","오늘 하루","신.행.학<br>승리하기"],
+ ["허그 DAY","사랑하는 가족","꼭~안아주기"],
+ ["'나'를 위한 DAY","오늘 인스턴트","음식 안먹기"],
+ ["도전 DAY","하기 싫은 일","즐겁게<br>도전해보기"],
+ ["해방 DAY","오늘 하루","잔소리 금지"],
+ ["영무궁화 DAY","선배와 함께","영무궁화<br>활동하기"],
+ ["사제 DAY","신인간혁명","2권 5페이지<br>읽기"]
 ];
 
 const grid=document.getElementById("grid");
 
 missions.forEach((arr,i)=>{
-  const cell=document.createElement("div");
-  cell.className="cell";
+ const cell=document.createElement("div");
+ cell.className="cell";
+ const box=document.createElement("div");
+ box.className="text-box";
+ box.innerHTML=`<div class="title">${arr[0]}</div>
+ <div class="subline">${arr[1]}</div>
+ <div class="third">${arr[2]}</div>`;
+ cell.appendChild(box);
 
-  const box=document.createElement("div");
-  box.className="text-box";
-  box.innerHTML=`
-    <div class="title">${arr[0]}</div>
-    <div class="subline">${arr[1]}</div>
-    <div class="third">${arr[2]}</div>
-  `;
-  cell.appendChild(box);
-
-  const r=Math.floor(i/4);
-  const c=i%4;
-
-  cell.onclick=()=>{
-    cell.classList.toggle("open");
-    if(cell.classList.contains("open")){
-      cell.style.backgroundPosition = `${c*33.33}% ${r*33.33}%`;
-      sparkle(cell);
-    }
-  };
-
-  grid.appendChild(cell);
+ const r=Math.floor(i/4), c=i%4;
+ cell.onclick=()=>{
+  cell.classList.toggle("open");
+  if(cell.classList.contains("open")){
+   cell.style.backgroundPosition=`${c*33.33}% ${r*33.33}%`;
+   sparkle(cell);
+  }
+ };
+ grid.appendChild(cell);
 });
 
 function sparkle(cell){
-  for(let i=0;i<12;i++){
-    const p=document.createElement("div");
-    p.className="petal";
-    p.style.setProperty("--x",(Math.random()*80-40)+"px");
-    p.style.setProperty("--y",(Math.random()*80-40)+"px");
-    p.style.left="50%";
-    p.style.top="50%";
-    cell.appendChild(p);
-    setTimeout(()=>p.remove(),1000);
-  }
+ for(let i=0;i<12;i++){
+  const p=document.createElement("div");
+  p.className="petal";
+  p.style.setProperty("--x",(Math.random()*80-40)+"px");
+  p.style.setProperty("--y",(Math.random()*80-40)+"px");
+  p.style.left="50%";
+  p.style.top="50%";
+  cell.appendChild(p);
+  setTimeout(()=>p.remove(),1000);
+ }
 }
-</script>
-
-<!-- ✅ 서비스워커 등록(최신 유지). 수정할 때 SW_VERSION 숫자만 올리면 됨 -->
-<script>
-(function(){
-  if (!("serviceWorker" in navigator)) return;
-
-  const SW_VERSION = "v6_20260120";
-
-  window.addEventListener("load", async () => {
-    try {
-      const reg = await navigator.serviceWorker.register("./service-worker.js?v=" + SW_VERSION);
-      await reg.update();
-      if (reg.waiting) reg.waiting.postMessage({ type: "SKIP_WAITING" });
-
-      reg.addEventListener("updatefound", () => {
-        const nw = reg.installing;
-        if (!nw) return;
-        nw.addEventListener("statechange", () => {
-          if (nw.state === "installed" && navigator.serviceWorker.controller) {
-            location.reload();
-          }
-        });
-      });
-    } catch (e) {}
-  });
-})();
 </script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
