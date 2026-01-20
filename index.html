@@ -31,28 +31,27 @@ body{
 /* 제목 영역 */
 .title-wrap{
   position:relative;
-  display:inline-block;
-  padding-top:8px;      /* ✅ 제물포권 아래 여백 최소 */
   margin-top:10px;
 }
 
-/* 제물포권 */
+/* 제물포권 (위치 그대로) */
 .top-center{
-  position:absolute;
-  top:-2px;
-  left:50%;
-  transform:translateX(-50%);
   font-family:'Poor Story', cursive;
   font-size:16px;
   font-weight:bold;
   white-space:nowrap;
 }
 
+/* ⬇️ 전체 한 줄 내려주는 래퍼 */
+.shift-down{
+  margin-top:16px; /* ✅ 한 줄 내려줌 */
+}
+
+/* 메인 제목 */
 .main-title{
   font-family:'Poor Story', cursive;
   font-size:26px;
   font-weight:bold;
-  margin-top:2px;       /* ✅ 제물포권과 제목 간격 */
   margin-bottom:6px;
 }
 
@@ -84,22 +83,21 @@ body{
   border:2px solid #ffd27d;
   border-radius:14px;
   padding:6px 12px;
-  max-width:100%;
+  max-width:260px;
+  width:100%;
 }
 
 .flower{font-size:18px;margin-right:6px;}
 
 .name-input{
+  flex:1;
   border:none;
   outline:none;
   font-size:15px;
-  width:110px;
-  min-width:90px;       /* ✅ 모바일에서 안 사라지게 */
-  max-width:140px;
-  text-align:left;
-  padding-left:6px;
-  margin-left:4px;     /* ✅ 오른쪽 한 칸 이동 */
-  background:transparent;
+  min-width:90px;
+  padding:6px;
+  margin-left:4px;
+  background:#fff;
 }
 
 /* 안내 */
@@ -168,7 +166,7 @@ body{
 .notice{
   font-size:15px;
   margin-top:10px;
-  line-height:1.35; /* 기본 */
+  line-height:1.2;
 }
 
 .notice-date{
@@ -177,13 +175,6 @@ body{
   text-decoration:underline;
 }
 .notice-strong{font-weight:bold;}
-
-/* 📱 모바일 전용 */
-@media (max-width:480px){
-  .notice{
-    line-height:1.1;   /* ✅ 두 줄 사이 여백 제거 */
-  }
-}
 </style>
 </head>
 
@@ -191,31 +182,37 @@ body{
 
 <div class="title-wrap">
   <div class="top-center">&lt;제물포권&gt;</div>
-  <div class="main-title">🌸 (영)무궁화꽃이 피었습니다 🌸</div>
-</div>
 
-<div class="sub-title">
-  <span class="period-title">빙고판 완성기간 :</span>
-  <span class="date-strong">1/26(월) ~ 2/25(수)</span>
-</div>
+  <!-- ⬇️ 여기부터 전부 한 줄 내려감 -->
+  <div class="shift-down">
 
-<div class="name-box">
-  <div class="name-wrap">
-    <div class="flower">🌷</div>
-    <input class="name-input" id="nameInput" placeholder="이름입력">
+    <div class="main-title">🌸 (영)무궁화꽃이 피었습니다 🌸</div>
+
+    <div class="sub-title">
+      <span class="period-title">빙고판 완성기간 :</span>
+      <span class="date-strong">1/26(월) ~ 2/25(수)</span>
+    </div>
+
+    <div class="name-box">
+      <div class="name-wrap">
+        <div class="flower">🌷</div>
+        <input class="name-input" id="nameInput" placeholder="이름입력">
+      </div>
+    </div>
+
+    <p class="guide">
+      칸을 눌러 도전과제를 완료해 보세요. 모두 열리면 꽃이 완성돼요 🌸
+    </p>
+
+    <div class="grid" id="grid"></div>
+
+    <div class="notice">
+      빙고 3줄 완성 시 소정의 상품을 드립니다<br>
+      <span class="notice-date">2월 25일 12시</span>
+      <span class="notice-strong">창춘교류회</span> 때 보여주세요
+    </div>
+
   </div>
-</div>
-
-<p class="guide">
-  칸을 눌러 도전과제를 완료해 보세요. 모두 열리면 꽃이 완성돼요 🌸
-</p>
-
-<div class="grid" id="grid"></div>
-
-<div class="notice">
-  빙고 3줄 완성 시 소정의 상품을 드립니다<br>
-  <span class="notice-date">2월 25일 12시</span>
-  <span class="notice-strong">창춘교류회</span> 때 보여주세요
 </div>
 
 <script>
