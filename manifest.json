@@ -1,23 +1,27 @@
 {
   "name": "제물포권 영무궁화 챌린지",
   "short_name": "영무궁화",
-  "start_url": "/",
-  "scope": "/",
+
+  "start_url": "/acok7777.github.io/",
+  "scope": "/acok7777.github.io/",
+
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#1976d2",
+
   "icons": [
     {
-      "src": "/icon-192.png",
+      "src": "/acok7777.github.io/icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "/icon-512.png",
+      "src": "/acok7777.github.io/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
     }
   ]
 }
+
