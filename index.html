@@ -28,12 +28,6 @@ body{
   background-size:40px 40px;
 }
 
-/* ⭐ 영어만 굵게 */
-.eng-bold{
-  font-family:"맑은 고딕", sans-serif;
-  font-weight:900;
-}
-
 /* 제목 영역 */
 .title-wrap{
   position:relative;
@@ -91,7 +85,7 @@ body{
   border:2px solid #ffd27d;
   border-radius:14px;
   padding:6px 10px;
-  width:140px;
+  width:140px;          /* ✅ 기존 대비 반으로 */
 }
 
 .flower{
@@ -104,6 +98,7 @@ body{
   border:none;
   outline:none;
   font-size:14px;
+  min-width:60px;
   padding:4px;
   background:#fff;
 }
@@ -224,22 +219,22 @@ body{
 
 <script>
 const missions=[
- ["스마일 <span class='eng-bold'>DAY</span>","가족에게","3가지 칭찬하기"],
- ["창제 <span class='eng-bold'>DAY</span>","평소","창제시간에<br>+10분"],
- ["오.운.완.","오늘 운동 완료","(산책, 스트레칭)<br><span class='eng-bold'>OK</span>"],
+ ["스마일 DAY","가족에게","3가지 칭찬하기"],
+ ["창제 DAY","평소","창제시간에<br>+10분"],
+ ["오.운.완.","오늘 운동 완료","(산책, 스트레칭<br>OK)"],
  ["땡스 투 ♡","오늘 감사한 일","3가지 적어보기"],
- ["<span class='eng-bold'>SDG's DAY</span>","오늘 일회용품","사용금지"],
- ["'나'를 위한 <span class='eng-bold'>DAY</span>","나 자신","칭찬해주기"],
- ["우호 <span class='eng-bold'>DAY</span>","칸나활동","실천"],
- ["좌담회 <span class='eng-bold'>DAY</span>","'나의청년' 및","가족과 함께<br>좌담회 참석"],
- ["우호 <span class='eng-bold'>DAY</span>","영무궁화에게<br>스피치 전하기","(회원,회우)"],
- ["승리 <span class='eng-bold'>DAY</span>","오늘 하루","신.행.학<br>승리하기"],
- ["허그 <span class='eng-bold'>DAY</span>","사랑하는 가족","꼭~안아주기"],
- ["'나'를 위한 <span class='eng-bold'>DAY</span>","오늘 인스턴트","음식 안먹기"],
- ["도전 <span class='eng-bold'>DAY</span>","하기 싫은 일","즐겁게<br>도전해보기"],
- ["해방 <span class='eng-bold'>DAY</span>","오늘 하루","잔소리 금지"],
- ["영무궁화 <span class='eng-bold'>DAY</span>","선배와 함께","영무궁화<br>활동하기"],
- ["사제 <span class='eng-bold'>DAY</span>","신인간혁명","2권 5페이지<br>읽기"]
+ ["SDG's DAY","오늘 일회용품","사용금지"],
+ ["'나'를 위한 DAY","나 자신","칭찬해주기"],
+ ["우호 DAY","칸나활동","실천"],
+ ["좌담회 DAY","'나의청년' 및","가족과 함께<br>좌담회 참석"],
+ ["우호 DAY","영무궁화에게<br>스피치 전하기","(회원,회우)"],
+ ["승리 DAY","오늘 하루","신.행.학<br>승리하기"],
+ ["허그 DAY","사랑하는 가족","꼭~안아주기"],
+ ["'나'를 위한 DAY","오늘 인스턴트","음식 안먹기"],
+ ["도전 DAY","하기 싫은 일","즐겁게<br>도전해보기"],
+ ["해방 DAY","오늘 하루","잔소리 금지"],
+ ["영무궁화 DAY","선배와 함께","영무궁화<br>활동하기"],
+ ["사제 DAY","신인간혁명","2권 5페이지<br>읽기"]
 ];
 
 const grid=document.getElementById("grid");
@@ -261,14 +256,14 @@ missions.forEach((arr,i)=>{
   const r=Math.floor(i/4), c=i%4;
   if(savedOpen.includes(i)){
     cell.classList.add("open");
-    cell.style.backgroundPosition=\`${c*33.33}% ${r*33.33}%\`;
+    cell.style.backgroundPosition=`${c*33.33}% ${r*33.33}%`;
   }
 
   cell.onclick=()=>{
     cell.classList.toggle("open");
     let now=JSON.parse(localStorage.getItem("openCells")||"[]");
     if(cell.classList.contains("open")){
-      cell.style.backgroundPosition=\`${c*33.33}% ${r*33.33}%\`;
+      cell.style.backgroundPosition=`${c*33.33}% ${r*33.33}%`;
       if(!now.includes(i)) now.push(i);
       sparkle(cell);
     }else{
@@ -302,3 +297,4 @@ function sparkle(cell){
 
 </body>
 </html>
+
